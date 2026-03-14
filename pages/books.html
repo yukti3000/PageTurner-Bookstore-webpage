@@ -40,64 +40,39 @@
 
 <section class="featured">
 
-<h2 class="section-title">Browse Books</h2>
+<h2 id="categoryTitle" class="section-title">Browse Books</h2>
 
-<div class="book-container" id="booksContainer"></div>
+<div id="booksContainer" class="book-container"></div>
 
 </section>
 
 
 <script src="../data/books.js"></script>
+<script src="../script.js"></script>
 
 <script>
 
-const container=document.getElementById("booksContainer")
+const params = new URLSearchParams(window.location.search)
 
-const params=new URLSearchParams(window.location.search)
+const category = params.get("category")
 
-const category=params.get("category")
+const container = document.getElementById("booksContainer")
 
-let filteredBooks=books
+let filteredBooks = books
 
 if(category){
 
-filteredBooks=books.filter(book=>book.category===category)
+filteredBooks = books.filter(book =>
+book.category.toLowerCase() === category.toLowerCase()
+)
+
+document.getElementById("categoryTitle").innerText = category + " Books"
 
 }
 
-filteredBooks.forEach(book=>{
-
-const card=document.createElement("div")
-
-card.className="book"
-
-card.innerHTML=`
-
-<a href="book.html?id=${book.id}">
-<img src="${book.image}">
-</a>
-
-<h3>${book.title}</h3>
-
-<p>${book.author}</p>
-
-<p class="rating">⭐ ${book.rating}</p>
-
-<p>₹${book.price}</p>
-
-<button onclick="addToCart(${book.id})">
-Add to Cart
-</button>
-
-`
-
-container.appendChild(card)
-
-})
+displayBooks(filteredBooks,"booksContainer")
 
 </script>
-
-<script src="../script.js"></script>
 
 </body>
 </html>
