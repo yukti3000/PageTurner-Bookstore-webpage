@@ -158,10 +158,23 @@ aria-label="Search books"
 
 <a href="pages/books.html?category=Romance">Romance</a>
 
+<a href="pages/books.html?category=Fantasy">Fantasy</a>
+
+<a href="pages/books.html?category=Mystery">Mystery</a>
+
+<a href="pages/books.html?category=Science">Science</a>
+
 <a href="pages/books.html?category=Technology">Technology</a>
 
-<a href="pages/books.html?category=Self Help">Self Help</a>
+<a href="pages/books.html?category=History">History</a>
 
+<a href="pages/books.html?category=Self%20Help">Self Help</a>
+
+<a href="pages/books.html?category=Psychology">Psychology</a>
+
+<a href="pages/books.html?category=Biography">Biography</a>
+
+<a href="pages/books.html?category=Business">Business</a>
 
 </div>
 
@@ -287,6 +300,28 @@ yuktimehta3000@gmail.com
 
 
 <script src="data/books.js"></script>
+
+<script>
+
+const categoryContainer = document.getElementById("categoryContainer")
+
+/* Get unique categories */
+
+const categories = [...new Set(books.map(book => book.category))]
+
+categories.forEach(cat => {
+
+const link = document.createElement("a")
+
+link.href = `pages/books.html?category=${encodeURIComponent(cat)}`
+
+link.innerText = cat
+
+categoryContainer.appendChild(link)
+
+})
+
+</script>
 
 <script src="script.js" defer></script>
 

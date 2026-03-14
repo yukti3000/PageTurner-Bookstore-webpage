@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<title>Book Preview</title>
+<title>Book Details</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 
@@ -10,13 +10,21 @@
 
 <header class="navbar">
 <div class="logo">📚 PageTurner</div>
+
+<nav class="nav-links">
+<a href="../index.html">Home</a>
+<a href="books.html">Browse Books</a>
+</nav>
+
 </header>
+
 
 <section class="book-detail-container">
 
-<div id="preview"></div>
+<div id="bookPreview"></div>
 
 </section>
+
 
 <script src="../data/books.js"></script>
 <script src="../script.js"></script>
@@ -25,11 +33,11 @@
 
 const params = new URLSearchParams(window.location.search)
 
-const id = parseInt(params.get("id"))
+const bookId = parseInt(params.get("id"))
 
-const book = books.find(b => b.id === id)
+const book = books.find(b => b.id === bookId)
 
-const preview = document.getElementById("preview")
+const preview = document.getElementById("bookPreview")
 
 if(book){
 
@@ -68,7 +76,7 @@ Buy Now
 
 `
 
-}else{
+} else {
 
 preview.innerHTML = "<h2>Book not found</h2>"
 

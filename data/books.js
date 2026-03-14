@@ -6,12 +6,13 @@ const baseBooks = [
 {title:"The Alchemist", author:"Paulo Coelho", category:"Fiction", rating:4.6},
 {title:"Sapiens", author:"Yuval Noah Harari", category:"History", rating:4.7},
 {title:"Educated", author:"Tara Westover", category:"Biography", rating:4.8},
-{title:"The Hobbit", author:"J.R.R. Tolkien", category:"Fantasy", rating:4.8},
+{title:"The Hobbit", author:"J.R.R Tolkien", category:"Fantasy", rating:4.8},
 {title:"1984", author:"George Orwell", category:"Dystopian", rating:4.7},
 {title:"Clean Code", author:"Robert C Martin", category:"Technology", rating:4.8},
 {title:"Thinking Fast and Slow", author:"Daniel Kahneman", category:"Psychology", rating:4.6}
 
 ]
+
 
 const extraTitles = [
 
@@ -95,32 +96,91 @@ const extraTitles = [
 
 ]
 
+
 let books = []
 let id = 1
 
-function createBook(title, author="Unknown Author", category="General", rating=4.5){
+
+/* Available Categories */
+
+const categories = [
+"Fiction",
+"Fantasy",
+"Mystery",
+"Science",
+"Technology",
+"History",
+"Self Help",
+"Psychology",
+"Biography",
+"Business",
+"Romance"
+]
+
+
+function randomCategory(){
+return categories[Math.floor(Math.random()*categories.length)]
+}
+
+
+/* Book Object Creator */
+
+function createBook(title, author="Unknown Author", category=randomCategory(), rating=4.5){
 
 return {
+
 id:id++,
+
 title:title,
+
 author:author,
+
 category:category,
+
 price:Math.floor(Math.random()*300)+300,
+
 rating:rating,
+
 image:`https://covers.openlibrary.org/b/title/${encodeURIComponent(title)}-L.jpg`,
-description:`"${title}" is a highly rated book enjoyed by readers worldwide. It offers engaging storytelling and valuable insights in the ${category} genre.`
-}
+
+fallbackImage:"https://covers.openlibrary.org/b/id/10523338-L.jpg",
+
+description: `"${title}" is a popular ${category} book written by ${author}. 
+
+It explores engaging storytelling, powerful ideas, and memorable characters that keep readers hooked from beginning to end.
+
+Recommended for readers interested in ${category.toLowerCase()} books and immersive reading experiences.`
 
 }
 
-/* Add base books */
+}
+
+
+/* Add Base Books */
 
 baseBooks.forEach(book=>{
 books.push(createBook(book.title,book.author,book.category,book.rating))
 })
 
-/* Generate remaining books */
+
+/* Generate Extra Books */
 
 extraTitles.forEach(title=>{
 books.push(createBook(title))
 })
+
+
+/* Safety Check */
+
+books.forEach(book=>{
+if(!book.description){
+book.description = `${book.title} by ${book.author} is a captivating ${book.category} book that has gained praise from readers around the world. 
+
+Through engaging storytelling, memorable characters, and thought-provoking ideas, this book offers a reading experience that keeps you hooked from the first page to the last. 
+
+Perfect for readers who enjoy ${book.category.toLowerCase()} books, ${book.title} delivers inspiration, insight, and entertainment all in one unforgettable story.`
+}
+})
+
+
+console.log("Total books loaded:",books.length)
