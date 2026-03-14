@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Browse Books</title>
+
+<link rel="stylesheet" href="../style.css">
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+<div class="logo">📚 PageTurner</div>
+
+<nav class="nav-links">
+
+<a href="../index.html">Home</a>
+<a href="books.html">Browse Books</a>
+<a href="help.html">Help</a>
+
+</nav>
+
+<div class="nav-right">
+
+<a href="cart.html" class="cart-btn">
+🛒
+<span id="cartCount" class="cart-count">0</span>
+</a>
+
+</div>
+
+</header>
+
+
+<section class="featured">
+
+<h2 class="section-title">Browse Books</h2>
+
+<div class="book-container" id="booksContainer"></div>
+
+</section>
+
+
+<script src="../data/books.js"></script>
+
+<script>
+
+const container=document.getElementById("booksContainer")
+
+const params=new URLSearchParams(window.location.search)
+
+const category=params.get("category")
+
+let filteredBooks=books
+
+if(category){
+
+filteredBooks=books.filter(book=>book.category===category)
+
+}
+
+filteredBooks.forEach(book=>{
+
+const card=document.createElement("div")
+
+card.className="book"
+
+card.innerHTML=`
+
+<a href="book.html?id=${book.id}">
+<img src="${book.image}">
+</a>
+
+<h3>${book.title}</h3>
+
+<p>${book.author}</p>
+
+<p class="rating">⭐ ${book.rating}</p>
+
+<p>₹${book.price}</p>
+
+<button onclick="addToCart(${book.id})">
+Add to Cart
+</button>
+
+`
+
+container.appendChild(card)
+
+})
+
+</script>
+
+<script src="../script.js"></script>
+
+</body>
+</html>

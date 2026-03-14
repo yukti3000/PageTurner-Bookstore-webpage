@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PageTurner Book Store</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<header class="navbar">
+
+<div class="logo">
+📚 PageTurner
+</div>
+
+<nav class="nav-links">
+
+<a href="index.html">Home</a>
+<a href="pages/books.html">Browse Books</a>
+<a href="pages/help.html">Help</a>
+
+</nav>
+
+<div class="nav-right">
+
+<a href="pages/cart.html" class="cart-btn">
+🛒
+<span id="cartCount" class="cart-count">0</span>
+</a>
+
+<div class="profile-menu">
+
+<button class="profile-btn" aria-label="User menu">👤</button>
+
+<div class="dropdown">
+
+<a href="pages/login.html">Login</a>
+<a href="pages/orders.html">Order History</a>
+
+</div>
+
+</div>
+
+</div>
+
+</header>
+
+
+<!-- HERO SECTION -->
+
+<section class="hero">
+
+<p class="tag">New arrivals every week</p>
+
+<h1>Discover Your Next Favorite Book</h1>
+
+<p class="hero-text">
+Explore our curated collection of books across Fiction, Science,
+Technology, and more.
+</p>
+
+<div class="search-box">
+
+<input
+type="text"
+id="searchBar"
+placeholder="Search books..."
+onkeyup="showSuggestions()"
+autocomplete="off"
+aria-label="Search books"
+/>
+
+<div id="suggestions"></div>
+
+</div>
+
+<div class="hero-buttons">
+
+<a href="pages/books.html" class="btn">Browse Books</a>
+
+<a href="pages/help.html" class="btn2">Help</a>
+
+</div>
+
+</section>
+
+
+<!-- STATS -->
+
+<section class="stats">
+
+<div class="stat">
+<h2>50+</h2>
+<p>Books</p>
+</div>
+
+<div class="stat">
+<h2>5+</h2>
+<p>Categories</p>
+</div>
+
+<div class="stat">
+<h2>4.5</h2>
+<p>Avg Rating</p>
+</div>
+
+</section>
+
+
+<!-- FEATURED BOOKS -->
+
+<section class="featured">
+
+<h2 class="section-title">Featured Books</h2>
+
+<div class="slider-container">
+
+<button class="slider-btn left" onclick="scrollLeft()">◀</button>
+
+<div class="slider" id="featuredBooks"></div>
+
+<button class="slider-btn right" onclick="scrollRight()">▶</button>
+
+</div>
+
+</section>
+
+
+<!-- RECOMMENDED BOOKS -->
+
+<section class="featured">
+
+<h2 class="section-title">Recommended For You</h2>
+
+<div class="book-container" id="recommendedBooks"></div>
+
+</section>
+
+
+<!-- CATEGORIES -->
+
+<section class="categories">
+
+<h2>Popular Categories</h2>
+
+<div class="category-grid">
+
+<a href="pages/books.html?category=Fiction">Fiction</a>
+<a href="pages/books.html?category=Non-Fiction">Non-Fiction</a>
+<a href="pages/books.html?category=Science">Science</a>
+<a href="pages/books.html?category=Technology">Technology</a>
+<a href="pages/books.html?category=Self%20Help">Self Help</a>
+<a href="pages/books.html?category=Business">Business</a>
+
+</div>
+
+</section>
+
+
+<!-- TESTIMONIALS -->
+
+<section class="testimonials">
+
+<h2>Customer Testimonials</h2>
+
+<div class="testimonial-grid">
+
+<div class="testimonial">
+
+<p>
+PageTurner has been my go-to for academic books.
+The prices are great and delivery is always on time!
+</p>
+
+<h4>Priya Sharma</h4>
+
+<span>Graduate Student</span>
+
+</div>
+
+<div class="testimonial">
+
+<p>
+Amazing collection of tech books. Found rare titles
+that weren't available anywhere else.
+</p>
+
+<h4>Rahul Verma</h4>
+
+<span>Software Engineer</span>
+
+</div>
+
+<div class="testimonial">
+
+<p>
+The interface is so clean and easy to navigate.
+Shopping for books has never been this enjoyable!
+</p>
+
+<h4>Ananya Patel</h4>
+
+<span>Book Enthusiast</span>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CTA -->
+
+<section class="cta">
+
+<h2>Ready to Start Reading?</h2>
+
+<p>
+Join thousands of readers and explore our collection today.
+</p>
+
+<a href="pages/books.html" class="btn">
+Browse All Books
+</a>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="footer-grid">
+
+<div>
+
+<h3>PageTurner</h3>
+
+<p>
+Your one-stop destination for academic and leisure reading.
+Discover books that inspire, educate, and entertain.
+</p>
+
+</div>
+
+<div>
+
+<h3>Quick Links</h3>
+
+<p><a href="pages/books.html">Browse Books</a></p>
+<p><a href="pages/help.html">Help & FAQ</a></p>
+
+</div>
+
+<div>
+
+<h3>Contact Us</h3>
+
+<p>Batala, Punjab, India</p>
+
+<p class="email">
+
+<img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Email">
+
+yuktimehta3000@gmail.com
+
+</p>
+
+<p>Built by Yukti</p>
+
+</div>
+
+</div>
+
+</footer>
+
+
+<script src="data/books.js"></script>
+
+<script src="script.js" defer></script>
+
+</body>
+</html>

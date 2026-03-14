@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Book Preview</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+<div class="logo">📚 PageTurner</div>
+</header>
+
+<section class="book-detail-container">
+
+<div id="preview"></div>
+
+</section>
+
+<script src="../data/books.js"></script>
+<script src="../script.js"></script>
+
+<script>
+
+const params = new URLSearchParams(window.location.search)
+
+const id = parseInt(params.get("id"))
+
+const book = books.find(b => b.id === id)
+
+const preview = document.getElementById("preview")
+
+if(book){
+
+preview.innerHTML = `
+
+<div class="book-detail">
+
+<img class="detail-img"
+src="${book.image}"
+onerror="this.src='https://covers.openlibrary.org/b/id/10523338-L.jpg'">
+
+<div class="book-info">
+
+<h1>${book.title}</h1>
+
+<p><strong>Author:</strong> ${book.author}</p>
+
+<p class="rating">⭐ ${book.rating}</p>
+
+<h2 class="price">₹${book.price}</h2>
+
+<p class="desc">${book.description}</p>
+
+<button class="btn" onclick="addToCart(${book.id})">
+Add to Cart
+</button>
+
+<button class="buy-btn"
+onclick="window.location.href='checkout.html?id=${book.id}'">
+Buy Now
+</button>
+
+</div>
+
+</div>
+
+`
+
+}else{
+
+preview.innerHTML = "<h2>Book not found</h2>"
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Your Cart</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+<div class="logo">📚 PageTurner</div>
+</header>
+
+<section class="cart-container">
+
+<h2>Your Cart</h2>
+
+<div id="cartItems"></div>
+
+<h3>Total: ₹<span id="cartTotal">0</span></h3>
+
+<a href="checkout.html">
+<button class="btn">Proceed to Checkout</button>
+</a>
+
+</section>
+
+<script>
+
+let cart = JSON.parse(localStorage.getItem("cart")) || []
+
+const container = document.getElementById("cartItems")
+
+let total = 0
+
+if(cart.length === 0){
+container.innerHTML = "<p>Your cart is empty</p>"
+}
+
+cart.forEach(item => {
+
+const div = document.createElement("div")
+
+div.className = "cart-item"
+
+div.innerHTML = `
+
+<img src="${item.image}" width="60">
+
+<h3>${item.title}</h3>
+
+<p>₹${item.price}</p>
+
+<p>Qty: ${item.quantity}</p>
+
+<button onclick="removeItem(${item.id})">Remove</button>
+
+`
+
+container.appendChild(div)
+
+total += item.price * item.quantity
+
+})
+
+document.getElementById("cartTotal").innerText = total
+
+function removeItem(id){
+
+cart = cart.filter(item => item.id !== id)
+
+localStorage.setItem("cart", JSON.stringify(cart))
+
+location.reload()
+
+}
+
+</script>
+
+</body>
+</html>
